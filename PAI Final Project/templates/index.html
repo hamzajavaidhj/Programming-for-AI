@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alkhidmat Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            /* background: url() no-repeat center center fixed; */
+            background-color: #8baada;
+            padding-top: 60px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .chatbot-container {
+            max-width: 700px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            height: 48px;
+            font-size: 16px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
+        .answer-section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container chatbot-container">
+        <h2 class="text-center mb-4">🤖 Alkhidmat Foundation Chatbot</h2>
+
+        <form method="POST">
+            <div class="mb-3">
+                <input type="text" class="form-control" name="question" placeholder="Ask your question here..." required>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Answer</button>
+        </form>
+
+        {% if best_answer %}
+        <div class="answer-section">
+            <div class="card border-success mb-3">
+                <div class="card-header bg-success text-white">✅ Best Answer</div>
+                <div class="card-body">
+                    <p class="card-text">{{ best_answer }}</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-info text-white">🔍 Similar Answers</div>
+                <ul class="list-group list-group-flush">
+                    {% for ans in similar_answers %}
+                        <li class="list-group-item">{{ ans }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
